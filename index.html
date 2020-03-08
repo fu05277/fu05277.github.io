@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<div class="container">
+    <h1>消毒水濃度計算</h1>
+    <form>
+        <div class="form-group">
+            <label for="before_ppm">目前濃度(ppm)</label>
+            <input type="number" class="form-control" id="before_ppm" value="500" onchange="calculation()" >
+            <!--            <small id="" class="form-text text-muted"></small>-->
+        </div>
+        <div class="form-group">
+            <label for="after_ppm">目標濃度(ppm)</label>
+            <input type="number" class="form-control" id="after_ppm" value="50" onchange="calculation()">
+        </div>
+        <div class="form-group">
+            <label for="water">目前水量(公升)</label>
+            <input type="number" class="form-control" id="water" value="0.3" onchange="calculation()">
+        </div>
+        <div class="form-group">
+            <label for="add_water">需加入的水量(公升)</label>
+            <input type="number" class="form-control" id="add_water" readonly value="2.7" onchange="calculation()">
+        </div>
+        <div class="form-group">
+            <label for="water">最後總水量(公升)</label>
+            <input type="number" class="form-control" id="last_water" readonly value="3" onchange="calculation()">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="calculation()" >Submit</button>
+    </form>
+</div>
+<script>
+    function calculation(){
+        var before_ppm = +document.getElementById("before_ppm").value;
+        var after_ppm = +document.getElementById("after_ppm").value;
+        var water = +document.getElementById("water").value;
+        var addwWater =  (before_ppm * water / after_ppm)-water;
+        document.getElementById("add_water").value = addwWater;
+        document.getElementById("last_water").value = water + addwWater ;
+    }
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
